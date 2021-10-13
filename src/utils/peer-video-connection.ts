@@ -102,7 +102,7 @@ export const createPeerConnectionContext = () => {
     iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
   });
 
-  const socketUrl = "http://localhost:4001/rooms";
+  const socketUrl = "http://192.168.90.28:4001/rooms";
   const socket = io(socketUrl);
 
   return new PeerConnectionSession(socket, peerConnection);

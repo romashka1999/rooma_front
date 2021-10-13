@@ -27,11 +27,11 @@ const peerVideoConnection = createPeerConnectionContext();
 const Room = () => {
   const { roomId } = useParams<{ roomId: string }>();
 
-  const [connectedUsers, setConnectedUsers] = useState<string[]>([]);
+  // const [connectedUsers, setConnectedUsers] = useState<string[]>([]);
   const [userMediaStream, setUserMediaStream] = useState(null);
-  const [displayMediaStream, setDisplayMediaStream] = useState(null);
-  const [startTimer, setStartTimer] = useState(false);
-  const [isFullScreen, setFullScreen] = useState(false);
+  // const [displayMediaStream, setDisplayMediaStream] = useState(null);
+  // const [startTimer, setStartTimer] = useState(false);
+  // const [isFullScreen, setFullScreen] = useState(false);
 
   const localVideo = useRef<any>(null);
   const remoteVideo = useRef<any>(null);
@@ -74,9 +74,9 @@ const Room = () => {
 
     peerVideoConnection.onNewMemberInRoomToClient((newSocketId: string) => {
       console.log(`newSocketId`, newSocketId);
-      setConnectedUsers((val: string[]) => {
-        return [...val, newSocketId];
-      });
+      // setConnectedUsers((val: string[]) => {
+      //   return [...val, newSocketId];
+      // });
       peerVideoConnection.onCallMade();
     });
 
@@ -90,41 +90,41 @@ const Room = () => {
     });
   }, []);
 
-  function fullScreen() {
-    setFullScreen(true);
-    const elem = mainRef.current;
-    if (elem === null) return;
-    if (elem.requestFullscreen) {
-      elem.requestFullscreen();
-    } else if (elem.msRequestFullscreen) {
-      elem.msRequestFullscreen();
-    } else if (elem.mozRequestFullScreen) {
-      elem.mozRequestFullScreen();
-    } else if (elem.webkitRequestFullscreen) {
-      elem.webkitRequestFullscreen();
-    }
-  }
+  // function fullScreen() {
+  //   setFullScreen(true);
+  //   const elem = mainRef.current;
+  //   if (elem === null) return;
+  //   if (elem.requestFullscreen) {
+  //     elem.requestFullscreen();
+  //   } else if (elem.msRequestFullscreen) {
+  //     elem.msRequestFullscreen();
+  //   } else if (elem.mozRequestFullScreen) {
+  //     elem.mozRequestFullScreen();
+  //   } else if (elem.webkitRequestFullscreen) {
+  //     elem.webkitRequestFullscreen();
+  //   }
+  // }
 
-  function cancelFullScreen() {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) {
-      document.msExitFullscreen();
-    }
-  }
+  // function cancelFullScreen() {
+  //   if (document.exitFullscreen) {
+  //     document.exitFullscreen();
+  //   } else if (document.mozCancelFullScreen) {
+  //     document.mozCancelFullScreen();
+  //   } else if (document.webkitExitFullscreen) {
+  //     document.webkitExitFullscreen();
+  //   } else if (document.msExitFullscreen) {
+  //     document.msExitFullscreen();
+  //   }
+  // }
 
-  function handleFullScreen(isFullScreen: boolean) {
-    setFullScreen(isFullScreen);
-    if (isFullScreen) {
-      fullScreen();
-    } else {
-      cancelFullScreen();
-    }
-  }
+  // function handleFullScreen(isFullScreen: boolean) {
+  //   setFullScreen(isFullScreen);
+  //   if (isFullScreen) {
+  //     fullScreen();
+  //   } else {
+  //     cancelFullScreen();
+  //   }
+  // }
 
   return (
     <main ref={mainRef} className="w-full bg-gray-600">
